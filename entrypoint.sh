@@ -5,7 +5,7 @@
 #npm install --save-dev webpack-cli@2.0.10
 
 
-if [ -z $ENV]; then
+if [ -z $ENV ]; then
 	echo "No ENV set, assuming local"
 	export ENV="local"
 fi
