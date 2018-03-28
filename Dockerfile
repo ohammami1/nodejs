@@ -7,8 +7,7 @@ RUN chmod +x /usr/bin/entrypoint.sh
 
 RUN mkdir -p /website
 
-
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 
-WORKDIR ["/website"]
+WORKDIR "/website"
 
