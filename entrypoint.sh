@@ -14,7 +14,8 @@ if [ $ENV != "prod" ]; then
 	npm install -g mocha@5.0.1 \
 		istanbul@0.4.5 \
 		apidoc@0.17.6 \
-		webpack@3.10.0 
+		webpack@3.10.0 \
+		nodemon@1.17.2
 fi
 
 npm install
