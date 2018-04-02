@@ -20,7 +20,7 @@ fi
 
 npm install
 
-#npm start
+npm start
 
 tail -f /dev/null
 
