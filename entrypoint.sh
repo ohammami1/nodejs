@@ -23,9 +23,11 @@ if [ $ENV != "prod" ]; then
 		nodemon@1.17.2 > $NODE_LOG_PATH
 fi
 
+sync
 wait -n
 npm --loglevel=warn --progress=false install > $NODE_LOG_PATH
 
+sync
 if [ $ENV == "prod" ]; then
 	npm start:prod
 else
