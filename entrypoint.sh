@@ -16,16 +16,16 @@ fi
 
 if [ $ENV != "prod" ]; then
 	wait -n
-	npm install --loglevel=warn --progress=false -g mocha@5.0.1 \
+	npm install --progress=false -g mocha@5.0.1 \
 		istanbul@0.4.5 \
 		apidoc@0.17.6 \
 		webpack@3.10.0 \
-		nodemon@1.17.2 > $NODE_LOG_PATH
+		nodemon@1.17.2 >> $NODE_LOG_PATH
 fi
 
 sync
 wait -n
-npm --loglevel=warn --progress=false install > $NODE_LOG_PATH
+npm --progress=false install >> $NODE_LOG_PATH
 
 sync
 if [ $ENV == "prod" ]; then
