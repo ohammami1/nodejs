@@ -25,7 +25,7 @@ fi
 
 sync
 wait -n
-npm --progress=false install >> $NODE_LOG_PATH
+npm install --progress=false >> $NODE_LOG_PATH
 
 sync
 if [ $ENV == "prod" ]; then
