@@ -5,6 +5,7 @@
 #npm install --save-dev webpack-cli@2.0.10
 
 export PATH=${PATH}:$(pwd)/node_modules/.bin
+printf "\nexport PATH=$PATH\n\n" >> ~/.bashrc
 
 if [ -z $ENV ]; then
 	echo "No ENV set, assuming local"
