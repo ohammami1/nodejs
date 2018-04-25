@@ -7,6 +7,10 @@ ARG user=node
 ADD entrypoint.sh /usr/bin/entrypoint.sh
 RUN chmod +x /usr/bin/entrypoint.sh
 
+RUN echo fs.inotify.max_user_watches=582222 | \
+     sudo tee --append /etc/sysctl.conf && \
+     sudo sysctl -p
+     
 RUN mkdir -p /website
 
 USER ${user}
