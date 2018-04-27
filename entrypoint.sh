@@ -20,6 +20,7 @@ fi
 npm install --progress=false >> $NODE_LOG_PATH
 
 if [ $ENV = "prod" ]; then
+	mkdir ~/.pm2
 	npm install --save pm2
 	npm run start:prod
 else
