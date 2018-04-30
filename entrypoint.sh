@@ -36,7 +36,7 @@ npm install --progress=false
 
 if [ $ENV = "prod" ]; then
 	npm install --save pm2
-	npm start:prod
+	npm run start:prod
 else
 	npm start
 fi
