@@ -1,8 +1,28 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-#npm install --save-dev webpack@3.4.1
-#npm install --save-dev webpack-dev-server@2.6.1
-#npm install --save-dev webpack-cli@2.0.10
+ENV_NAMES=$(export | cut -d' ' -f 3- | cut -d'=' -f 1)
+
+DIST_FILE=/website/${DIST_DIR}/config.js.dist
+CONF_FILE=/website/${DIST_DIR}/config.js
+
+if ! [ -f ${DIST_FILE} ] || ! [ ${DIST_DIR} ]; then
+	echo "No Dist File, skipping configurations..."
+else
+        cp ${DIST_FILE} ${CONF_FILE}
+        
+        for i in ${ENV_NAMES}; do
+        	#echo "ENV: s/__${i}__/${!i}/g"
+        	if [ -z ${!i} ]; then continue; fi
+        	if echo ${!i} | grep '/' >/dev/null 2>&1 ; then continue; fi
+        
+        	sed -i ${CONF_FILE} -e "s/__${i}__/${!i}/g"
+        done
+        
+        if cat ${CONF_FILE} | grep '__' >/dev/null 2>&1 ; then
+        	echo "Warning: They're still unbound variables in ${CONF_FILE}, you probabely didn't define those in your environment section"
+        fi
+        
+fi
 
 export PATH=${PATH}:$(pwd)/node_modules/.bin
 printf "\nexport PATH=$PATH\n\n" >> ~/.bashrc
@@ -12,12 +32,7 @@ if [ -z $ENV ]; then
 	export ENV="local"
 fi
 
-if [ -z $NODE_LOG_PATH ]; then
-	echo "No Log Path Specified, if you wish to get logs add NODE_LOG_PATH var to your environment"
-	export NODE_LOG_PATH=/proc/self/fd/1
-fi
-
-npm install --progress=false >> $NODE_LOG_PATH
+npm install --progress=false
 
 if [ $ENV = "prod" ]; then
 	npm install --save pm2
