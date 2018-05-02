@@ -32,12 +32,12 @@ if [ -z $ENV ]; then
 	export ENV="local"
 fi
 
-npm install --progress=false
-
 if [ $ENV = "prod" ]; then
+ 	npm install --production
 	npm install --save pm2
 	npm run start:prod
 else
+	npm install --progress=false
 	npm start
 fi
 
