@@ -3,13 +3,9 @@
 ENV_NAMES=$(export | cut -d' ' -f 3- | cut -d'=' -f 1)
 
 DIST_FILE=/website/${DIST_DIR}/${CONF_NAME}.dist
-CONF_FILE=/website/${DIST_DIR}/${CONF_NAME}.js
+CONF_FILE=/website/${DIST_DIR}/${CONF_NAME}
 
-if ! [ -f ${CONF_NAME} ] || [ -f ${DIST_FILE} ] || ! [ ${DIST_DIR} ]; then
-	echo "CONF_NAME: ${CONF_NAME}"
-	echo "DIST_DIR: ${DIST_DIR}"
-	echo "DIR_FILE: ${DIST_FILE"
-	cat ${DIST_FILE}
+if ! [ "${CONF_NAME}" ] || ! [ -f ${DIST_FILE} ] || ! [ "${DIST_DIR}" ]; then
 	echo "No Dist File, skipping configurations..."
 else
         cp ${DIST_FILE} ${CONF_FILE}
